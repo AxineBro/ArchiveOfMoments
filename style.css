@@ -477,6 +477,17 @@ img.moment-media:fullscreen {
 
 /* Полностью переработанная мобильная навигация */
 @media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  .moment-media {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 50vh !important;
+  }
   :-webkit-full-screen .media-container {
     width: 100% !important;
     height: 100% !important;
