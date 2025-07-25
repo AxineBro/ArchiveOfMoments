@@ -20,10 +20,6 @@
       <div class="nav-container">
         <div class="logo"><a href="index.html">Архив моментов</a></div>
         <div class="people-menu">
-          <div class="scroll-indicator">
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-right"></i>
-          </div>
           <a href="profiles/Axine.html">
             <div class="person-item">
               <img
@@ -244,42 +240,36 @@
       }
 
       function openFullscreen(btn) {
-        const mediaContainer = btn.closest(".media-container");
-        const media = mediaContainer.querySelector("video, img");
-
-        // Выходим из полноэкранного режима, если уже в нем
-        if (document.fullscreenElement) {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          }
-          return;
-        }
-
-        // Входим в полноэкранный режим
-        if (media.requestFullscreen) {
-          media.requestFullscreen();
-        } else if (media.webkitRequestFullscreen) {
-          /* Safari */
-          media.webkitRequestFullscreen();
-        } else if (media.webkitEnterFullscreen) {
-          /* iOS Safari */
-          media.webkitEnterFullscreen();
-        } else if (media.msRequestFullscreen) {
-          /* IE11 */
-          media.msRequestFullscreen();
-        }
-
-        // Для видео показываем стандартные элементы управления
-        if (media.tagName === "VIDEO") {
-          media.controls = true;
-
-          media.addEventListener("fullscreenchange", function () {
-            if (!document.fullscreenElement) {
-              media.controls = false;
-            }
-          });
-        }
+  const mediaContainer = btn.closest(".media-container");
+  const media = mediaContainer.querySelector("video, img");
+  
+  // Для iOS требуется особый подход
+  if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+    if (media.tagName === 'VIDEO' && media.webkitEnterFullscreen) {
+      media.webkitEnterFullscreen();
+    }
+    return;
+  }
+  
+  // Стандартный подход для других устройств
+  if (media.requestFullscreen) {
+    media.requestFullscreen();
+  } else if (media.webkitRequestFullscreen) {
+    media.webkitRequestFullscreen();
+  } else if (media.msRequestFullscreen) {
+    media.msRequestFullscreen();
+  }
+  
+  // Для видео включаем стандартные элементы управления
+  if (media.tagName === 'VIDEO') {
+    media.controls = true;
+    media.addEventListener('fullscreenchange', function() {
+      if (!document.fullscreenElement) {
+        media.controls = false;
       }
+    });
+  }
+}
 
       document.addEventListener("DOMContentLoaded", function () {
         const peopleMenu = document.querySelector(".people-menu");

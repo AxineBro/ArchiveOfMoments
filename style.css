@@ -477,6 +477,25 @@ img.moment-media:fullscreen {
 
 /* Полностью переработанная мобильная навигация */
 @media (max-width: 768px) {
+  :-webkit-full-screen .media-container {
+    width: 100% !important;
+    height: 100% !important;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  :-webkit-full-screen .moment-media {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100vh !important;
+  }
+  
+  /* Для iOS */
+  video::-webkit-media-controls {
+    display: flex !important;
+  }
   .navbar {
     padding: 10px 0;
   }
