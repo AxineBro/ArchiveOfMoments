@@ -659,7 +659,7 @@ img.moment-media:fullscreen {
   object-fit: contain !important;
 }
 
-/* Индикаторы скролла (опционально) */
+/* Индикаторы скролла  */
 .people-menu {
   position: relative;
 }
@@ -678,4 +678,67 @@ img.moment-media:fullscreen {
   width: 20px;
   pointer-events: none;
   z-index: 1;
+}
+/* Общие стили для полноэкранного режима */
+:-webkit-full-screen .moment-media {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+:-moz-full-screen .moment-media {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+:-ms-fullscreen .moment-media {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+:fullscreen .moment-media {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Особые стили для iOS */
+@media (max-width: 768px) {
+  video::-webkit-media-controls {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-play-button {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-volume-slider {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-mute-button {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-timeline {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-current-time-display {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-time-remaining-display {
+    display: flex !important;
+  }
 }

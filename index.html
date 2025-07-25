@@ -240,36 +240,49 @@
       }
 
       function openFullscreen(btn) {
-  const mediaContainer = btn.closest(".media-container");
-  const media = mediaContainer.querySelector("video, img");
-  
-  // Для iOS требуется особый подход
-  if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
-    if (media.tagName === 'VIDEO' && media.webkitEnterFullscreen) {
-      media.webkitEnterFullscreen();
-    }
-    return;
-  }
-  
-  // Стандартный подход для других устройств
-  if (media.requestFullscreen) {
-    media.requestFullscreen();
-  } else if (media.webkitRequestFullscreen) {
-    media.webkitRequestFullscreen();
-  } else if (media.msRequestFullscreen) {
-    media.msRequestFullscreen();
-  }
-  
-  // Для видео включаем стандартные элементы управления
-  if (media.tagName === 'VIDEO') {
-    media.controls = true;
-    media.addEventListener('fullscreenchange', function() {
-      if (!document.fullscreenElement) {
-        media.controls = false;
+        const mediaContainer = btn.closest(".media-container");
+        const media = mediaContainer.querySelector("video, img");
+
+        // Для iOS (особый подход)
+        if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+          if (media.tagName === "VIDEO" && media.webkitEnterFullscreen) {
+            media.webkitEnterFullscreen();
+            // Добавляем обработчик для восстановления после выхода
+            media.addEventListener("webkitendfullscreen", function () {
+              media.controls = false;
+            });
+          }
+          return;
+        }
+
+        // Для Android и других устройств
+        if (media.requestFullscreen) {
+          media.requestFullscreen();
+        } else if (media.webkitRequestFullscreen) {
+          media.webkitRequestFullscreen();
+        }
+
+        // Настройка видео в полноэкранном режиме
+        if (media.tagName === "VIDEO") {
+          media.addEventListener("fullscreenchange", function () {
+            if (document.fullscreenElement) {
+              // В полноэкранном режиме
+              media.style.width = "auto";
+              media.style.height = "auto";
+              media.style.maxHeight = "100vh";
+              media.style.maxWidth = "100vw";
+              media.style.objectFit = "contain";
+              media.controls = true;
+            } else {
+              // При выходе из полноэкранного режима
+              media.style.width = "";
+              media.style.height = "";
+              media.style.objectFit = "cover";
+              media.controls = false;
+            }
+          });
+        }
       }
-    });
-  }
-}
 
       document.addEventListener("DOMContentLoaded", function () {
         const peopleMenu = document.querySelector(".people-menu");
