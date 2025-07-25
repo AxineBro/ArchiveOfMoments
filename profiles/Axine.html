@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Профиль пользователя | Архив моментов</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <!-- Навигационная панель с людьми -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo"><a href="../index.html">Архив моментов</a></div>
+        <div class="people-menu">
+          <a href="../profiles/Axine.html">
+            <div class="person-item">
+              <img
+                src="../img/Axine/AxineProfile.jpg"
+                alt="Леша"
+                class="person-avatar"
+              />
+              <span class="person-name">Леша</span>
+            </div>
+          </a>
+          <a href="../profiles/Rombaba.html">
+            <div class="person-item">
+              <img
+                src="../img/Rombaba/RombabaProfile.jpg"
+                alt="Рома"
+                class="person-avatar"
+              />
+              <span class="person-name">Рома</span>
+            </div>
+          </a>
+          <a href="../profiles/Stepa.html">
+            <div class="person-item">
+              <img
+                src="../img/Stepa/StepaProfile.jpg"
+                alt="Стёпа"
+                class="person-avatar"
+              />
+              <span class="person-name">Стёпа</span>
+            </div>
+          </a>
+          <a href="../profiles/Geyser.html">
+            <div class="person-item">
+              <img
+                src="../img/Geyser/GeyserProfile.jpg"
+                alt="Захар"
+                class="person-avatar"
+              />
+              <span class="person-name">Захар</span>
+            </div>
+          </a>
+          <a href="../profiles/Bruh.html">
+            <div class="person-item">
+              <img
+                src="../img/Bruh/BruhProfile.jpg"
+                alt="Паша"
+                class="person-avatar"
+              />
+              <span class="person-name">Паша</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Контент страницы профиля -->
+    <div class="container">
+      <div class="profile-container">
+        <!-- Боковая панель с информацией о пользователе -->
+        <aside class="profile-sidebar">
+          <div class="profile-card">
+            <div class="profile-header">
+              <img
+                src="../img/Axine/AxineProfile.jpg"
+                alt="Рома"
+                class="profile-avatar"
+              />
+              <h1 class="profile-name">Алексей Быков</h1>
+              <div class="profile-nickname">@Axine</div>
+
+              <div class="profile-stats">
+                <div class="stat-item">
+                  <div class="stat-number">3</div>
+                  <div class="stat-label">Моментов</div>
+                </div>
+                <!--<div class="stat-item">
+                  <div class="stat-number">42</div>
+                  <div class="stat-label">Избранных</div>
+                </div>-->
+                <div class="stat-item">
+                  <div class="stat-number">2024</div>
+                  <div class="stat-label">С года</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-bio">Готовимся в казино</div>
+
+            <div class="profile-facts">
+              <div class="fact-item">
+                <div class="fact-icon">
+                  <i class="fas fa-birthday-cake"></i>
+                </div>
+                <div class="fact-text">Родился 1 октября</div>
+              </div>
+              <div class="fact-item">
+                <div class="fact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="fact-text">Воронеж, Россия</div>
+              </div>
+              <div class="fact-item">
+                <div class="fact-icon"><i class="fas fa-heart"></i></div>
+                <div class="fact-text">One love</div>
+              </div>
+              <div class="fact-item">
+                <div class="fact-icon"><i class="fas fa-star"></i></div>
+                <div class="fact-text">Лучший момент: "Сходили в больничку"</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <h2 class="section-title">Топ теги</h2>
+            <div
+              class="moment-people"
+              style="flex-direction: column; gap: 10px"
+            >
+              <span
+                class="moment-person"
+                style="display: inline-block; width: 100%"
+                >#казино</span
+              >
+              <span
+                class="moment-person"
+                style="display: inline-block; width: 100%"
+                >#ром</span
+              >
+              <span
+                class="moment-person"
+                style="display: inline-block; width: 100%"
+                >#прогулки</span
+              >
+              <span
+                class="moment-person"
+                style="display: inline-block; width: 100%"
+                >#победа</span
+              >
+              <span
+                class="moment-person"
+                style="display: inline-block; width: 100%"
+                >#приключения</span
+              >
+            </div>
+          </div>
+        </aside>
+
+        <!-- Основное содержимое с моментами -->
+        <main class="profile-content">
+          <div class="profile-card">
+            <h2 class="section-title">Мои моменты</h2>
+
+            <div class="moments-grid">
+              <!-- Фото-карточка -->
+              <div class="moment-card">
+                <div class="media-container">
+                  <img
+                    src="../img/Mass/Mass1.jpg"
+                    alt="Фото Ромы"
+                    class="moment-media"
+                  />
+                  <button
+                    class="fullscreen-btn"
+                    onclick="openFullscreenImg(this)"
+                  >
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="moment-info">
+                  <h3 class="moment-title">Сходили в больничку</h3>
+                  <span class="moment-date">5 февраля 2025</span>
+                  <div class="moment-people">
+                    <span class="moment-person">Рома</span>
+                    <span class="moment-person">Захар</span>
+                    <span class="moment-person">Леша</span>
+                    <span class="moment-person">Паша</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Видео-карточка -->
+               <div class="moment-card">
+                <div class="favorite-badge">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="media-container">
+                  <span class="video-badge">
+                    <i class="fas fa-video"></i> Видео
+                  </span>
+                  <video class="moment-media" poster="../img/Geyser/GeyserMov5.png">
+                    <source src="../mov/Geyser/Geyser5.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                  </video>
+                  <div class="media-controls">
+                    <button class="control-btn play-btn" onclick="togglePlay(this)">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn mute-btn" onclick="toggleMute(this)">
+                      <i class="fas fa-volume-up"></i>
+                    </button>
+                  </div>
+                  <button class="fullscreen-btn" onclick="openFullscreen(this)">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="moment-info">
+                  <h3 class="moment-title">Приятная прогулочка</h3>
+                  <span class="moment-date">4 ноября 2024</span>
+                  <div class="moment-people">
+                    <span class="moment-person">Захар</span>
+                    <span class="moment-person">Леша</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Видео-карточка -->
+              <div class="moment-card">
+                <div class="favorite-badge">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="media-container">
+                  <span class="video-badge">
+                    <i class="fas fa-video"></i> Видео
+                  </span>
+                  <video
+                    class="moment-media"
+                    poster="../img/Geyser/GeyserMov4.png"
+                  >
+                    <source src="../mov/Geyser/Geyser4.mp4" type="video/mp4" />
+                    Ваш браузер не поддерживает видео.
+                  </video>
+                  <div class="media-controls">
+                    <button
+                      class="control-btn play-btn"
+                      onclick="togglePlay(this)"
+                    >
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <button
+                      class="control-btn mute-btn"
+                      onclick="toggleMute(this)"
+                    >
+                      <i class="fas fa-volume-up"></i>
+                    </button>
+                  </div>
+                  <button class="fullscreen-btn" onclick="openFullscreen(this)">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="moment-info">
+                  <h3 class="moment-title">Побеждаем</h3>
+                  <span class="moment-date">3 января 2024</span>
+                  <div class="moment-people">
+                    <span class="moment-person">Захар</span>
+                    <span class="moment-person">Леша</span>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Функции для управления видео (как на главной странице)
+      function togglePlay(btn) {
+        const video = btn.closest(".media-container").querySelector("video");
+        const icon = btn.querySelector("i");
+
+        if (video.paused) {
+          video.play();
+          icon.classList.remove("fa-play");
+          icon.classList.add("fa-pause");
+        } else {
+          video.pause();
+          icon.classList.remove("fa-pause");
+          icon.classList.add("fa-play");
+        }
+      }
+
+      function toggleMute(btn) {
+        const video = btn.closest(".media-container").querySelector("video");
+        const icon = btn.querySelector("i");
+
+        video.muted = !video.muted;
+        icon.classList.toggle("fa-volume-up");
+        icon.classList.toggle("fa-volume-mute");
+      }
+
+      function openFullscreen(btn) {
+        const mediaContainer = btn.closest(".media-container");
+        const video = mediaContainer.querySelector("video");
+
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+          return;
+        }
+
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+
+        video.addEventListener("fullscreenchange", function () {
+          if (document.fullscreenElement) {
+            video.controls = true;
+          } else {
+            video.controls = false;
+          }
+        });
+      }
+
+      // Функция для полноэкранного просмотра изображений
+      function openFullscreenImg(btn) {
+        const mediaContainer = btn.closest(".media-container");
+        const img = mediaContainer.querySelector("img");
+
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+          return;
+        }
+
+        if (img.requestFullscreen) {
+          img.requestFullscreen();
+        } else if (img.webkitRequestFullscreen) {
+          img.webkitRequestFullscreen();
+        } else if (img.msRequestFullscreen) {
+          img.msRequestFullscreen();
+        }
+      }
+
+      // Автопауза при скролле
+      document.addEventListener("scroll", function () {
+        document.querySelectorAll("video").forEach((video) => {
+          if (isElementInViewport(video)) return;
+          video.pause();
+          const playBtn = video
+            .closest(".media-container")
+            .querySelector(".play-btn i");
+          if (playBtn) {
+            playBtn.classList.remove("fa-pause");
+            playBtn.classList.add("fa-play");
+          }
+        });
+      });
+
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+    </script>
+  </body>
+</html>
