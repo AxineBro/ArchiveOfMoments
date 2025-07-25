@@ -475,50 +475,177 @@ img.moment-media:fullscreen {
   object-fit: contain !important;
 }
 
-
-
-/* Полностью переработанные стили для аватаров */
-.person-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  display: block;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  padding: 2px; /* Добавляем небольшой внутренний отступ */
-}
-
-/* Улучшенные стили для мобильных устройств */
+/* Полностью переработанная мобильная навигация */
 @media (max-width: 768px) {
-  .person-avatar {
-    width: 50px;
-    height: 50px;
-    border-width: 2px;
-    padding: 1px;
+  .navbar {
+    padding: 10px 0;
   }
   
-  /* Гарантируем правильное отображение в Firefox */
-  @-moz-document url-prefix() {
-    .person-avatar {
-      box-shadow: 0 0 0 2px white, 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
+  .nav-container {
+    flex-direction: column;
+    padding: 0 15px;
+    align-items: stretch;
+  }
+  
+  .logo {
+    font-size: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  
+  .people-menu {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 15px;
+    margin-bottom: -15px;
+    scrollbar-width: none;
+  }
+  
+  .people-menu::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .person-item {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 20vw;
+    max-width: 80px;
+    position: relative;
+  }
+  
+  .person-avatar {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border: 2px solid white;
+  }
+  
+  .person-name {
+    font-size: 11px;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* Индикатор скролла */
+  .scroll-indicator {
+    text-align: center;
+    margin-top: 5px;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
   }
 }
 
-/* Исправление для Safari */
-@media not all and (min-resolution:.001dpcm) { 
-  @supports (-webkit-appearance:none) {
-    .person-avatar {
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
-    }
+/* Анимация для индикатора скролла */
+@keyframes bounce {
+  0%, 100% { transform: translateX(-25%); }
+  50% { transform: translateX(25%); }
+}
+
+.scroll-indicator i {
+  animation: bounce 1.5s infinite;
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 400px) {
+  .person-item {
+    width: 18vw;
+  }
+  
+  .person-name {
+    font-size: 10px;
   }
 }
 
-/* Анимация при наведении */
-.person-item:hover .person-avatar {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  border-color: #ffcc00;
+/* Для ПК (исходные стили) */
+video.moment-media:-webkit-full-screen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+video.moment-media:-moz-full-screen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+video.moment-media:-ms-fullscreen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+video.moment-media:fullscreen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+img.moment-media:-webkit-full-screen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+img.moment-media:-moz-full-screen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+img.moment-media:-ms-fullscreen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+img.moment-media:fullscreen {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Индикаторы скролла (опционально) */
+.people-menu {
+  position: relative;
+}
+
+.people-menu.has-scroll {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.people-menu.has-scroll::before,
+.people-menu.has-scroll::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  pointer-events: none;
+  z-index: 1;
 }
