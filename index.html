@@ -241,29 +241,49 @@
 
       function openFullscreen(btn) {
         const mediaContainer = btn.closest(".media-container");
-        const media = mediaContainer.querySelector("video");
+        const media = mediaContainer.querySelector("video, img");
 
-        // Для iOS
-        if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
-          if (media.webkitEnterFullscreen) {
-            media.webkitEnterFullscreen();
+        // Выходим из полноэкранного режима, если уже в нем
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
           }
           return;
         }
 
-        // Для Android и других устройств
+        // Входим в полноэкранный режим
         if (media.requestFullscreen) {
           media.requestFullscreen();
         } else if (media.webkitRequestFullscreen) {
+          /* Safari */
           media.webkitRequestFullscreen();
+        } else if (media.webkitEnterFullscreen) {
+          /* iOS Safari */
+          media.webkitEnterFullscreen();
+        } else if (media.msRequestFullscreen) {
+          /* IE11 */
+          media.msRequestFullscreen();
         }
 
-        // Добавляем обработчик для выхода из полноэкранного режима
-        media.addEventListener("fullscreenchange", function () {
-          if (!document.fullscreenElement) {
-            media.controls = false;
+        // Для видео показываем стандартные элементы управления
+        if (media.tagName === "VIDEO") {
+          media.controls = true;
+
+          media.addEventListener("fullscreenchange", function () {
+            if (!document.fullscreenElement) {
+              media.controls = false;
+            }
+          });
+
+          // На ПК сохраняем оригинальные размеры
+          if (window.innerWidth > 768) {
+            media.style.width = "auto";
+            media.style.height = "auto";
+            media.style.maxWidth = "100%";
+            media.style.maxHeight = "100%";
+            media.style.objectFit = "contain";
           }
-        });
+        }
       }
 
       document.addEventListener("DOMContentLoaded", function () {
