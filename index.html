@@ -2,7 +2,11 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Архив моментов</title>
     <link
       rel="stylesheet"
@@ -17,54 +21,54 @@
         <div class="logo"><a href="index.html">Архив моментов</a></div>
         <div class="people-menu">
           <a href="profiles/Axine.html">
-          <div class="person-item">
-            <img
-              src="img/Axine/AxineProfile.jpg"
-              alt="Леша"
-              class="person-avatar"
-            />
-            <span class="person-name">Леша</span>
-          </div>
+            <div class="person-item">
+              <img
+                src="img/Axine/AxineProfile.jpg"
+                alt="Леша"
+                class="person-avatar"
+              />
+              <span class="person-name">Леша</span>
+            </div>
           </a>
           <a href="profiles/Rombaba.html">
-          <div class="person-item">
-            <img
-              src="img/Rombaba/RombabaProfile.jpg"
-              alt="Рома"
-              class="person-avatar"
-            />
-            <span class="person-name">Рома</span>
-          </div>
+            <div class="person-item">
+              <img
+                src="img/Rombaba/RombabaProfile.jpg"
+                alt="Рома"
+                class="person-avatar"
+              />
+              <span class="person-name">Рома</span>
+            </div>
           </a>
           <a href="profiles/Stepa.html">
-          <div class="person-item">
-            <img
-              src="img/Stepa/StepaProfile.jpg"
-              alt="Стёпа"
-              class="person-avatar"
-            />
-            <span class="person-name">Стёпа</span>
-          </div>
+            <div class="person-item">
+              <img
+                src="img/Stepa/StepaProfile.jpg"
+                alt="Стёпа"
+                class="person-avatar"
+              />
+              <span class="person-name">Стёпа</span>
+            </div>
           </a>
           <a href="profiles/Geyser.html">
-          <div class="person-item">
-            <img
-              src="img/Geyser/GeyserProfile.jpg"
-              alt="Захар"
-              class="person-avatar"
-            />
-            <span class="person-name">Захар</span>
-          </div>
+            <div class="person-item">
+              <img
+                src="img/Geyser/GeyserProfile.jpg"
+                alt="Захар"
+                class="person-avatar"
+              />
+              <span class="person-name">Захар</span>
+            </div>
           </a>
           <a href="profiles/Bruh.html">
-          <div class="person-item">
-            <img
-              src="img/Bruh/BruhProfile.jpg"
-              alt="Паша"
-              class="person-avatar"
-            />
-            <span class="person-name">Паша</span>
-          </div>
+            <div class="person-item">
+              <img
+                src="img/Bruh/BruhProfile.jpg"
+                alt="Паша"
+                class="person-avatar"
+              />
+              <span class="person-name">Паша</span>
+            </div>
           </a>
         </div>
       </div>
@@ -206,7 +210,7 @@
 
       function openFullscreen(btn) {
         const mediaContainer = btn.closest(".media-container");
-        const video = mediaContainer.querySelector("video");
+        const media = mediaContainer.querySelector("video, img");
 
         // Выходим из полноэкранного режима, если уже в нем
         if (document.fullscreenElement) {
@@ -217,24 +221,29 @@
         }
 
         // Входим в полноэкранный режим
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) {
+        if (media.requestFullscreen) {
+          media.requestFullscreen();
+        } else if (media.webkitRequestFullscreen) {
           /* Safari */
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) {
+          media.webkitRequestFullscreen();
+        } else if (media.webkitEnterFullscreen) {
+          /* iOS Safari */
+          media.webkitEnterFullscreen();
+        } else if (media.msRequestFullscreen) {
           /* IE11 */
-          video.msRequestFullscreen();
+          media.msRequestFullscreen();
         }
 
-        // В полноэкранном режиме показываем стандартные элементы управления
-        video.addEventListener("fullscreenchange", function () {
-          if (document.fullscreenElement) {
-            video.controls = true;
-          } else {
-            video.controls = false;
-          }
-        });
+        // Для видео показываем стандартные элементы управления
+        if (media.tagName === "VIDEO") {
+          media.controls = true;
+
+          media.addEventListener("fullscreenchange", function () {
+            if (!document.fullscreenElement) {
+              media.controls = false;
+            }
+          });
+        }
       }
 
       // Автопауза при скролле (чтобы не играло несколько видео одновременно)
