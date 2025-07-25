@@ -475,33 +475,50 @@ img.moment-media:fullscreen {
   object-fit: contain !important;
 }
 
-/* Обновленный медиа-запрос для мобильных */
+/* Обновленные стили для навигации на мобильных */
 @media (max-width: 768px) {
-  /* Остальные стили из предыдущего решения остаются */
-  
-  /* Переопределяем только поведение видео в полноэкранном режиме */
-  :-webkit-full-screen .moment-media {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
+  .nav-container {
+    flex-direction: column;
+    padding: 10px;
+    align-items: flex-start; /* Выравниваем по левому краю */
   }
-  
-  :-moz-full-screen .moment-media {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
+
+  .people-menu {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Включаем горизонтальный скролл */
+    width: 100%;
+    padding-bottom: 10px; /* Отступ для скролла */
+    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+    scrollbar-width: none; /* Скрываем скроллбар в Firefox */
   }
-  
-  :-ms-fullscreen .moment-media {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
+
+  .people-menu::-webkit-scrollbar {
+    display: none; /* Скрываем скроллбар в Chrome/Safari */
   }
-  
-  :fullscreen .moment-media {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
+
+  .person-item {
+    flex: 0 0 auto; /* Запрещаем сжатие элементов */
+    min-width: 70px; /* Минимальная ширина для каждого элемента */
+  }
+
+  .person-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .person-name {
+    font-size: 12px;
+    white-space: nowrap; /* Запрещаем перенос текста */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Добавляем многоточие если не влезает */
+    max-width: 70px; /* Максимальная ширина для имени */
+  }
+
+  .logo {
+    margin-bottom: 10px; /* Отступ между лого и скроллом */
+    width: 100%;
+    text-align: center; /* Центрируем лого */
   }
 }
 
@@ -568,4 +585,35 @@ img.moment-media:fullscreen {
   max-width: 100% !important;
   max-height: 100% !important;
   object-fit: contain !important;
+}
+
+/* Индикаторы скролла (опционально) */
+.people-menu {
+  position: relative;
+}
+
+.people-menu.has-scroll {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.people-menu.has-scroll::before,
+.people-menu.has-scroll::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.people-menu.has-scroll::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(106,17,203,1) 0%, rgba(106,17,203,0) 100%);
+}
+
+.people-menu.has-scroll::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(106,17,203,1) 0%, rgba(106,17,203,0) 100%);
 }

@@ -465,7 +465,7 @@
     </div>
 
     <script>
-      // Функции для управления видео (как на главной странице)
+      // Функции для управления видео
       function togglePlay(btn) {
         const video = btn.closest(".media-container").querySelector("video");
         const icon = btn.querySelector("i");
@@ -492,8 +492,9 @@
 
       function openFullscreen(btn) {
         const mediaContainer = btn.closest(".media-container");
-        const video = mediaContainer.querySelector("video");
+        const media = mediaContainer.querySelector("video, img");
 
+        // Выходим из полноэкранного режима, если уже в нем
         if (document.fullscreenElement) {
           if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -501,45 +502,48 @@
           return;
         }
 
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) {
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) {
-          video.msRequestFullscreen();
+        // Входим в полноэкранный режим
+        if (media.requestFullscreen) {
+          media.requestFullscreen();
+        } else if (media.webkitRequestFullscreen) {
+          /* Safari */
+          media.webkitRequestFullscreen();
+        } else if (media.webkitEnterFullscreen) {
+          /* iOS Safari */
+          media.webkitEnterFullscreen();
+        } else if (media.msRequestFullscreen) {
+          /* IE11 */
+          media.msRequestFullscreen();
         }
 
-        video.addEventListener("fullscreenchange", function () {
-          if (document.fullscreenElement) {
-            video.controls = true;
-          } else {
-            video.controls = false;
-          }
-        });
-      }
+        // Для видео показываем стандартные элементы управления
+        if (media.tagName === "VIDEO") {
+          media.controls = true;
 
-      // Функция для полноэкранного просмотра изображений
-      function openFullscreenImg(btn) {
-        const mediaContainer = btn.closest(".media-container");
-        const img = mediaContainer.querySelector("img");
-
-        if (document.fullscreenElement) {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          }
-          return;
-        }
-
-        if (img.requestFullscreen) {
-          img.requestFullscreen();
-        } else if (img.webkitRequestFullscreen) {
-          img.webkitRequestFullscreen();
-        } else if (img.msRequestFullscreen) {
-          img.msRequestFullscreen();
+          media.addEventListener("fullscreenchange", function () {
+            if (!document.fullscreenElement) {
+              media.controls = false;
+            }
+          });
         }
       }
 
-      // Автопауза при скролле
+      document.addEventListener("DOMContentLoaded", function () {
+        const peopleMenu = document.querySelector(".people-menu");
+
+        if (peopleMenu) {
+          // Проверяем, есть ли горизонтальный скролл
+          function checkScroll() {
+            const hasScroll = peopleMenu.scrollWidth > peopleMenu.clientWidth;
+            peopleMenu.classList.toggle("has-scroll", hasScroll);
+          }
+
+          // Проверяем при загрузке и при изменении размера окна
+          checkScroll();
+          window.addEventListener("resize", checkScroll);
+        }
+      });
+      // Автопауза при скролле (чтобы не играло несколько видео одновременно)
       document.addEventListener("scroll", function () {
         document.querySelectorAll("video").forEach((video) => {
           if (isElementInViewport(video)) return;

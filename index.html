@@ -246,6 +246,21 @@
         }
       }
 
+      document.addEventListener("DOMContentLoaded", function () {
+        const peopleMenu = document.querySelector(".people-menu");
+
+        if (peopleMenu) {
+          // Проверяем, есть ли горизонтальный скролл
+          function checkScroll() {
+            const hasScroll = peopleMenu.scrollWidth > peopleMenu.clientWidth;
+            peopleMenu.classList.toggle("has-scroll", hasScroll);
+          }
+
+          // Проверяем при загрузке и при изменении размера окна
+          checkScroll();
+          window.addEventListener("resize", checkScroll);
+        }
+      });
       // Автопауза при скролле (чтобы не играло несколько видео одновременно)
       document.addEventListener("scroll", function () {
         document.querySelectorAll("video").forEach((video) => {
