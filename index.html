@@ -20,6 +20,10 @@
       <div class="nav-container">
         <div class="logo"><a href="index.html">Архив моментов</a></div>
         <div class="people-menu">
+          <div class="scroll-indicator">
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-right"></i>
+          </div>
           <a href="profiles/Axine.html">
             <div class="person-item">
               <img
@@ -183,6 +187,37 @@
     </div>
 
     <script>
+      // Добавьте этот код в ваш существующий script
+      document.addEventListener("DOMContentLoaded", function () {
+        const peopleMenu = document.querySelector(".people-menu");
+        const scrollIndicator = document.querySelector(".scroll-indicator");
+
+        if (peopleMenu && scrollIndicator) {
+          // Показываем/скрываем индикатор в зависимости от необходимости скролла
+          function updateScrollIndicator() {
+            const canScroll = peopleMenu.scrollWidth > peopleMenu.clientWidth;
+            scrollIndicator.style.display = canScroll ? "block" : "none";
+          }
+
+          // Обновляем при загрузке и изменении размера
+          updateScrollIndicator();
+          window.addEventListener("resize", updateScrollIndicator);
+
+          // Обработка скролла для изменения индикатора
+          peopleMenu.addEventListener("scroll", function () {
+            const isEnd =
+              peopleMenu.scrollLeft + peopleMenu.clientWidth >=
+              peopleMenu.scrollWidth - 10;
+            const isStart = peopleMenu.scrollLeft <= 10;
+
+            scrollIndicator.innerHTML = isEnd
+              ? '<i class="fas fa-arrow-left"></i>'
+              : isStart
+              ? '<i class="fas fa-arrow-right"></i>'
+              : '<i class="fas fa-arrow-left"></i><i class="fas fa-arrow-right"></i>';
+          });
+        }
+      });
       // Функции для управления видео
       function togglePlay(btn) {
         const video = btn.closest(".media-container").querySelector("video");
