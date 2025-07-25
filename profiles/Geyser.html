@@ -88,7 +88,7 @@
 
               <div class="profile-stats">
                 <div class="stat-item">
-                  <div class="stat-number">13</div>
+                  <div class="stat-number">14</div>
                   <div class="stat-label">Моментов</div>
                 </div>
                 <!--<div class="stat-item">
@@ -544,7 +544,47 @@
                   </div>
                 </div>
               </div>
-
+<!-- Видео-карточка -->
+              <div class="moment-card">
+                <div class="favorite-badge">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="media-container">
+                  <span class="video-badge">
+                    <i class="fas fa-video"></i> Видео
+                  </span>
+                  <video class="moment-media" poster="../img/Mass/MassMov4.png">
+                    <source src="../mov/Mass/Mass4.mp4" type="video/mp4" />
+                    Ваш браузер не поддерживает видео.
+                  </video>
+                  <div class="media-controls">
+                    <button
+                      class="control-btn play-btn"
+                      onclick="togglePlay(this)"
+                    >
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <button
+                      class="control-btn mute-btn"
+                      onclick="toggleMute(this)"
+                    >
+                      <i class="fas fa-volume-up"></i>
+                    </button>
+                  </div>
+                  <button class="fullscreen-btn" onclick="openFullscreen(this)">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="moment-info">
+                  <h3 class="moment-title">Первая игра в автоматы</h3>
+                  <span class="moment-date">3 августа 2023</span>
+                  <div class="moment-people">
+                    <span class="moment-person">Захар</span>
+                    <span class="moment-person">Леша</span>
+                    <span class="moment-person">Рома</span>
+                  </div>
+                </div>
+              </div>
               <!-- Видео-карточка -->
               <div class="moment-card">
                 <div class="favorite-badge">
